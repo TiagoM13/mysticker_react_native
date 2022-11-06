@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Image, SafeAreaView, ScrollView, TextInput, View } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
 
@@ -10,8 +10,16 @@ import { styles } from './styles';
 import { POSITIONS, PositionProps } from '../utils/positions';
 
 export function Home() {
+  const [photo, setPhotoURI] = useState<null | string>(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(false);
   const [positionSelected, setPositionSelected] = useState<PositionProps>(POSITIONS[0]);
+
+  const cameraRef = useRef<Camera>(null);
+
+  const handleTakePicture = async () => {
+    const photo = await cameraRef.current.takePictureAsync();
+    setPhotoURI(photo.uri);
+  }
 
   useEffect(() => {
     Camera.requestCameraPermissionsAsync()
@@ -26,14 +34,14 @@ export function Home() {
 
           <View style={styles.picture}>
 
-            {hasCameraPermission ?
+            {hasCameraPermission && !photo ?
               <Camera
+                ref={cameraRef}
                 style={styles.camera}
                 type={CameraType.front}
               /> :
-              <Image source={{ uri: 'https://github.com/TiagoM13.png' }} style={styles.camera} />
+              <Image source={{ uri: photo ? photo : 'https://assets.zoom.us/images/en-us/desktop/generic/video-not-working.PNG' }} style={styles.camera} />
             }
-
 
             <View style={styles.player}>
               <TextInput
@@ -49,7 +57,7 @@ export function Home() {
           positionSelected={positionSelected}
         />
 
-        <Button title="Compartilhar" />
+        <Button title="Compartilhar" onPress={handleTakePicture} />
       </ScrollView>
     </SafeAreaView>
   );

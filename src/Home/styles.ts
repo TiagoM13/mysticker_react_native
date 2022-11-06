@@ -37,10 +37,22 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.BLUE
   },
   retry: {
-    color: COLORS.WHITE,
+    color: COLORS.BLACK,
     fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 22,
-    marginBottom: 10
+    fontSize: 16,
+    textTransform: 'uppercase',
+  },
+  containerButton: {
+    flex: 1,
+    height: 56,
+    maxHeight: 56,
+    backgroundColor: COLORS.WHITE,
+    color: COLORS.BLACK,
+    margin: 24,
+    marginTop: 16,
+    marginBottom: 0,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });

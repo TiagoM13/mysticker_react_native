@@ -1,17 +1,13 @@
 import { FlatList, View, Text } from 'react-native';
+import { IPositionChoice } from '../../interfaces';
 
-import { POSITIONS, PositionProps } from '../../utils/positions';
+import { POSITIONS } from '../../utils/positions';
 
 import { Position } from '../Position';
 
 import { styles } from './styles';
 
-type Props = {
-  onChangePosition: (position: PositionProps) => void;
-  positionSelected: PositionProps;
-}
-
-export function PositionChoice({ onChangePosition, positionSelected }: Props) {
+export function PositionChoice({ onChangePosition, positionSelected }: IPositionChoice) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>

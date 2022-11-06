@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Image, SafeAreaView, ScrollView, TextInput, View } from 'react-native';
-import { captureRef } from "react-native-view-shot";
+import { Image, SafeAreaView, ScrollView, TextInput, TouchableOpacity, View, Text } from 'react-native';
+import { captureRef } from 'react-native-view-shot';
 import { Camera, CameraType } from 'expo-camera';
-import * as Sharing from "expo-sharing";
+import * as Sharing from 'expo-sharing';
 
 import { Header } from '../components/Header';
 import { Button } from '../components/Button';
@@ -26,33 +26,33 @@ export function Home() {
 
   const shareScreenShot = async () => {
     const screenshot = await captureRef(screenShotRef);
-    await Sharing.shareAsync(`file:://${screenshot}`);
+    await Sharing.shareAsync(`file://${screenshot}`);
   }
 
   useEffect(() => {
     Camera.requestCameraPermissionsAsync()
       .then(response => setHasCameraPermission(response.granted));
-  }, [])
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View ref={screenShotRef}>
+        <View ref={screenShotRef} style={styles.sticker}>
           <Header position={positionSelected} />
 
           <View style={styles.picture}>
-
-            {hasCameraPermission && !photo ?
-              <Camera
-                ref={cameraRef}
-                style={styles.camera}
-                type={CameraType.front}
-              /> :
-              <Image
-                source={{ uri: photo ? photo : 'https://assets.zoom.us/images/en-us/desktop/generic/video-not-working.PNG' }}
-                style={styles.camera}
-                onLoad={shareScreenShot}
-              />
+            {
+              hasCameraPermission && !photo ?
+                <Camera
+                  ref={cameraRef}
+                  style={styles.camera}
+                  type={CameraType.front}
+                /> :
+                <Image
+                  source={{ uri: photo ? photo : 'https://images.gutefrage.net/media/fragen/bilder/meine-kamera-auf-windows-10-funktioniert-nicht-was-tun/0_big.jpg?v=1584606917000' }}
+                  style={styles.camera}
+                  onLoad={shareScreenShot}
+                />
             }
 
             <View style={styles.player}>
@@ -68,6 +68,12 @@ export function Home() {
           onChangePosition={setPositionSelected}
           positionSelected={positionSelected}
         />
+
+        <TouchableOpacity onPress={() => setPhotoURI(null)}>
+          <Text style={styles.retry}>
+            Nova foto
+          </Text>
+        </TouchableOpacity>
 
         <Button title="Compartilhar" onPress={handleTakePicture} />
       </ScrollView>

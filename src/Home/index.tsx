@@ -69,11 +69,13 @@ export function Home() {
           positionSelected={positionSelected}
         />
 
-        <TouchableOpacity onPress={() => setPhotoURI(null)}>
-          <Text style={styles.retry}>
-            Nova foto
-          </Text>
-        </TouchableOpacity>
+        {photo && (
+          <TouchableOpacity style={styles.containerButton} onPress={() => setPhotoURI(null)}>
+            <Text style={styles.retry}>
+              Nova foto
+            </Text>
+          </TouchableOpacity>
+        )}
 
         <Button title="Compartilhar" onPress={handleTakePicture} />
       </ScrollView>

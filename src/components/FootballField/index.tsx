@@ -1,14 +1,9 @@
 import { View, Text } from 'react-native';
-
-import { PositionProps } from '../../utils/positions';
+import { IFootbalField } from '../../interfaces';
 
 import { styles } from './styles';
 
-type Props = {
-  data: PositionProps;
-};
-
-export function FootballField({ data }: Props) {
+export function FootballField({ data }: IFootbalField) {
 
   return (
     <View style={styles.container}>

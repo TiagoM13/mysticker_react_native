@@ -1,25 +1,22 @@
-import { TouchableOpacity, TouchableOpacityProps, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
+import { IPosition } from '../../interfaces';
+import { COLORS } from '../../theme/colors';
 
 import { styles } from './styles';
 
-type Props = TouchableOpacityProps & {
-  title: string;
-  isSelected: boolean;
-}
-
-export function Position({ title, isSelected, ...rest }: Props) {
+export function Position({ title, isSelected, ...rest }: IPosition) {
   return (
     <TouchableOpacity
       style={[
         styles.container,
-        isSelected ? { backgroundColor: '#047C3F' } : { backgroundColor: '#FFF' }
+        isSelected ? { backgroundColor: COLORS.GREEN } : { backgroundColor: COLORS.WHITE }
       ]}
       {...rest}
     >
       <Text
         style={[
           styles.title,
-          isSelected ? { color: '#FFF' } : { color: '#000' }
+          isSelected ? { color: COLORS.WHITE } : { color: COLORS.BLACK }
         ]}
       >
         {title}

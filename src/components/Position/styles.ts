@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,6 +14,6 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textTransform: 'capitalize',
     fontSize: 14,
-    color: '#047C3F'
+    color: COLORS.GREEN
   },
 });

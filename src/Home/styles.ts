@@ -1,16 +1,17 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { COLORS } from '../theme/colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#373D98',
+    backgroundColor: COLORS.BLUE,
     paddingTop: 24
   },
   scroll: {
     paddingBottom: 150
   },
   picture: {
-    backgroundColor: '#FFF',
+    backgroundColor: COLORS.WHITE,
     borderRadius: 10,
     margin: 24,
     padding: 5
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   player: {
     width: '100%',
-    backgroundColor: '#FFF',
+    backgroundColor: COLORS.WHITE,
     height: 56,
     justifyContent: 'center',
     alignItems: 'center'
@@ -33,10 +34,10 @@ export const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   sticker: {
-    backgroundColor: '#373D98'
+    backgroundColor: COLORS.BLUE
   },
   retry: {
-    color: '#FFF',
+    color: COLORS.WHITE,
     fontWeight: 'bold',
     alignSelf: 'center',
     marginTop: 22,
